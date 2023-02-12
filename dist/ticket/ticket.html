@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.8" />
+    <title>Funkhouse Ticket</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
+    />
+    <link rel="stylesheet" href="/ticket/style.css" />
+    <style></style>
+  </head>
+  <body>
+    <div class="ticket">
+      <div class="holes-top"></div>
+      <div class="title">
+        <p class="cinema"><%= name %></p>
+        <% if(checked === true){ %>
+        <p class="movie-title" style="color: #f71735">Использован</p>
+        <% } else{ %>
+        <p class="movie-title" style="color: #488b49">Не использован</p>
+        <% } %>
+      </div>
+      <div class="poster">
+        <img src="../splash.png" alt="Funkhouse" />
+      </div>
+      <div class="info">
+        <table>
+          <tr>
+            <th>ЦЕНА</th>
+            <th>НОМЕР БИЛЕТА</th>
+            <th>СОЦ. СЕТЬ</th>
+          </tr>
+          <tr>
+            <td><%= price %></td>
+            <td><%= id %></td>
+            <td><%= social %></td>
+          </tr>
+        </table>
+      </div>
+      <div class="holes-lower"></div>
+      <div class="serial">
+        <table class="barcode">
+          <img src="http://localhost/tickets/ef5f6fa1-6c30-420d-94ce-e51830c5cca1/qr" alt="">
+        </table>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+    <script></script>
+  </body>
+</html>

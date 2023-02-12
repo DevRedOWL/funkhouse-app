@@ -11,7 +11,6 @@ img {
 
 .ticket {
   width: 400px;
-  height: 775px;
   background-color: white;
   margin: 25px auto;
   position: relative;
@@ -27,7 +26,8 @@ img {
   margin-left: -25px;
   top: -25px;
 }
-.holes-top:before, .holes-top:after {
+.holes-top:before,
+.holes-top:after {
   content: "";
   height: 50px;
   width: 50px;
@@ -47,7 +47,8 @@ img {
   margin: 25px;
   border: 1px dashed #aaa;
 }
-.holes-lower:before, .holes-lower:after {
+.holes-lower:before,
+.holes-lower:after {
   content: "";
   height: 50px;
   width: 50px;
@@ -111,7 +112,10 @@ table td {
 }
 
 .serial {
-  padding: 25px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 25px;
 }
 .serial table {
   border-collapse: collapse;

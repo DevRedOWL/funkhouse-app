@@ -5,17 +5,20 @@
   "author": "Daniel Varentsov",
   "license": "MIT",
   "dependencies": {
+    "cookie-parser": "^1.4.6",
     "csv-parser": "^3.0.0",
-    "ejs": "^3.1.6",
-    "express": "^4.17.2",
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
     "http": "^0.0.1-security",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "pg": "^8.9.0",
+    "qrcode": "^1.5.1",
+    "sequelize": "^6.28.0"
   },
   "scripts": {
     "start": "node index.js",
     "start:watch": "nodemon -e js",
-    "db:drop": "./node_modules/.bin/sequelize db:drop",
-    "db:recreate": "yarn db:drop && ./node_modules/.bin/sequelize db:create",
     "up": "docker-compose down && docker-compose up --force-recreate --build -d"
   }
 }
