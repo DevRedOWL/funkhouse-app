@@ -50,7 +50,7 @@ services:
 
   fh-pgadmin:
     restart: unless-stopped
-    container_name: funkhouse-app-pgadmin
+    container_name: fh-pgadmin
     image: dpage/pgadmin4
     environment:
       PGADMIN_CONFIG_SERVER_MODE: 'False' # True if we use PGADMIN_DEFAULT_EMAIL and PGADMIN_DEFAULT_PASSWORD
