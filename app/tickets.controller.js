@@ -7,8 +7,26 @@ const adminGuard = require("./admin.guard.js");
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  return res.send("Tickets?");
+router.get("/", adminGuard(), async (req, res) => {
+  const tickets = await FunkhouseTicket.findAll();
+  const result = {
+    count: tickets.length,
+    revenue: tickets.reduce((acc, curr) => acc + curr.price, 0),
+  };
+  return res.send(result);
+});
+
+router.post("/", adminGuard(), async (req, res) => {
+  const { name, checked, social } = req.body;
+  if (!name || checked === undefined)
+    return res.status(400).send({ message: "name or checked is false" });
+
+  const ticket = await FunkhouseTicket.create({
+    name,
+    checked,
+    social: social?.toUpperCase() || "НА ВХОДЕ",
+  });
+  return res.send({ data: ticket });
 });
 
 router.get("/find/:name", adminGuard(), async (req, res) => {

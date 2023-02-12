@@ -1,5 +1,6 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
 const path = require("path");
 const { cookieSecret } = require("./config.js").app;
 
@@ -8,6 +9,7 @@ const AdminController = require("./admin.controller.js");
 
 const app = express();
 app.use(cookieParser(cookieSecret));
+app.use(bodyParser.json());
 app.engine("html", require("ejs").renderFile);
 app.set("view engine", "html");
 app.set("views", path.join(__dirname, "../dist/ticket"));

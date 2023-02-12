@@ -82,10 +82,14 @@
     </div>
 
     <!-- After Cropline -->
-    <div id="cropline" class="ticket" style="margin: 0 auto; z-index: 0">
+    <div
+      id="cropline"
+      class="ticket"
+      style="margin: -1px auto 0 auto; z-index: 0"
+    >
       <div class="holes-lower"></div>
       <div id="serial" class="serial">
-        <img style="height: 280px" src="/tickets/<%=qr%>/qr" alt="" />
+        <img src="/tickets/<%=qr%>/qr" alt="" />
       </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>

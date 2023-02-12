@@ -25,7 +25,7 @@ FunkhouseTicket.init(
     },
     price: {
       defaultValue: app.defaultPrice,
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
     },
     social: {
       defaultValue: "INSTAGRAM",

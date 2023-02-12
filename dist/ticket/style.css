@@ -6,6 +6,15 @@ body {
   font-weight: 600;
 }
 
+.serial img {
+  height: 280px;
+}
+@media (max-height: 810px) {
+  .serial img {
+    height: 200px;
+  }
+}
+
 img {
   max-width: 100%;
   height: auto;
@@ -145,7 +154,7 @@ h2 {
   font-family: Helvetica;
   font-size: 36px;
   margin-top: 36px;
-  color: #21897E;
+  color: #21897e;
   opacity: 0;
 }
 /* input[type="checkbox"]:checked ~  */

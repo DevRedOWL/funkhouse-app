@@ -10,5 +10,7 @@ module.exports = () => (req, res, next) => {
   const { isAdmin } = req?.signedCookies;
   if (isAdmin === "true") {
     return next();
-  } else throw new UnauthorizedError();
+  } else {
+    throw new UnauthorizedError();
+  }
 };
