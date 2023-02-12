@@ -16,6 +16,7 @@ app.set("views", path.join(__dirname, "../dist/ticket"));
 app.use(express.static("dist"));
 
 app.get("/", (req, res) => {
+  // FIXME: Remove this
   if (req.get("host") === "wareandsoft.com") {
     return res.sendFile(path.join(__dirname, "../dist/ws/index.html"));
   }
