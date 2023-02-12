@@ -22,6 +22,9 @@ app.get("/", (req, res) => {
   }
   return res.sendFile(path.join(__dirname, "../dist/splash.png"));
 });
+app.get("/ws", (req, res) => {
+  return res.sendFile(path.join(__dirname, "../dist/ws/index.html"));
+});
 
 app.use("/tickets", TicketsController);
 app.use("/admin", AdminController);

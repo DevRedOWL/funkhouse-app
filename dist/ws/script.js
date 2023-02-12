@@ -234,4 +234,4 @@ setInterval(() => {
   orbs.forEach((orb) => {
     orb.fill = colorPalette.randomColor();
   });
-}, 10000);
+}, 15000);

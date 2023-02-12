@@ -146,8 +146,8 @@ a {
 
 .logo {
   position: absolute;
-  right: 0.6rem;
-  top: 0.2rem;
+  right: 1.5rem;
+  top: 1.2rem;
 }
 
 /* Not too many browser support this yet but it's good to add! */
@@ -201,10 +201,10 @@ a {
   .logo {
     position: absolute;
     left: 5%;
-    margin-top: -30%;
-    transform: scale(0.5, 0.5);
-    -ms-transform: scale(0.5, 0.5);
-    -webkit-transform: scale(0.5, 0.5);
+    margin-top: -32%;
+    transform: scale(0.8, 0.8);
+    -ms-transform: scale(0.8, 0.8);
+    -webkit-transform: scale(0.8, 0.8);
   }
 
   .overlay__btns {

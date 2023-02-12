@@ -26,23 +26,23 @@
       sizes="16x16"
       href="/ws/favicon-16x16.png"
     />
-    <link rel="shortcut icon" href="/ws/favicon.ico">
+    <link rel="shortcut icon" href="/ws/favicon.ico" />
     <link rel="manifest" href="/ws/site.webmanifest" />
     <link rel="mask-icon" href="/ws/safari-pinned-tab.svg" color="#5bbad5" />
-    <meta name="msapplication-TileColor" content="#fcf7f8" />
-    <meta name="theme-color" content="#fcf7f8" />
+    <meta name="msapplication-TileColor" content="#a21488" />
+    <meta name="theme-color" content="#a21488" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.9" />
     <link rel="stylesheet" href="/ws/style.css" />
   </head>
-  <body>
+  <body scroll="no" style="height: 100%; overflow: hidden">
     <!-- partial:index.partial.html -->
     <!-- Canvas -->
     <canvas class="orb-canvas"></canvas>
     <!-- Overlay -->
     <div class="overlay">
       <div
-        class="logo text-gradient"
+        class="logo text-gradient overlay__btn--colors"
         style="
           -webkit-mask: url(/ws/logo.svg) no-repeat center;
           mask: url(/ws/logo.svg) no-repeat center;
@@ -79,10 +79,7 @@
           <button class="overlay__btn overlay__btn--transparent">
             <a href="tel:+79223759145" target="_blank"> Телефон </a>
           </button>
-          <a
-            href="https://tortik59.t.me"
-            class="overlay__btn overlay__btn--colors"
-          >
+          <a href="https://tortik59.t.me" class="overlay__btn">
             <span>Telegram</span>
             <span class="overlay__btn-emoji"></span>
           </a>
