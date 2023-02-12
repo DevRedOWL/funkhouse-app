@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ware&Soft Digital</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/ws/style.css" />
+  </head>
+  <body>
+    <!-- partial:index.partial.html -->
+    <!-- Canvas -->
+    <canvas class="orb-canvas"></canvas>
+    <!-- Overlay -->
+    <div class="overlay">
+      <div
+        class="logo text-gradient"
+        style="
+          -webkit-mask: url(logo.svg) no-repeat center;
+          mask: url(logo.svg) no-repeat center;
+          background-clip: border-box;
+        "
+      >
+        <img src="/ws/logo.svg" style="opacity: 0" alt="" srcset="" />
+      </div>
+      <!-- Overlay inner wrapper -->
+      <div class="overlay__inner">
+        <!-- Title -->
+        <h1 class="overlay__title">
+          Мы комбинируем <span class="text-gradient">красоту</span> и
+          функциональность, чтобы создавать удобные, привлекательные
+          веб-приложения, которые улучшат производительность вашего бизнеса и
+          повысят качество обслуживания клиентов.
+        </h1>
+        <!-- Description -->
+        <p class="overlay__description">
+          Наши специалисты готовы воплотить ваши идеи в реальность, будь то
+          чат-боты, мобильные приложения или сложные интеграционные системы.
+          <strong>
+            Наша миссия - предоставлять качественный софт, который упрощает жизнь
+            людей и решает реальные задачи.
+          </strong>
+        </p>
+        <!-- Buttons -->
+        <div class="overlay__btns">
+          <button class="overlay__btn overlay__btn--transparent">
+            <a href="mailto:danielvarentsoff@gmail.com" target="_blank">
+              Email
+            </a>
+          </button>
+          <button class="overlay__btn overlay__btn--transparent">
+            <a href="tel:+79223759145" target="_blank"> Телефон </a>
+          </button>
+          <a
+            href="https://tortik59.t.me"
+            class="overlay__btn overlay__btn--colors"
+          >
+            <span>Telegram</span>
+            <span class="overlay__btn-emoji"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- partial -->
+    <script type="module" src="/ws/script.js"></script>
+  </body>
+</html>
