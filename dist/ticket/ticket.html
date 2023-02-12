@@ -102,6 +102,7 @@
       const serial = document.getElementById("cropline");
       const hammer = new Hammer(serial);
       const tearSound = new Audio("/ticket_tear.mp3");
+      const canVibrate = window?.navigator?.vibrate;
     </script>
 
     <% if(isAdmin === true && checked === false) { %>
@@ -123,7 +124,7 @@
         tearSound.play();
         serial.style.transition = "all 0.3s ease-out";
         serial.style.transform = "translateY(10%)";
-        window.navigator.vibrate([20]);
+        canVibrate && window?.navigator?.vibrate([20]);
         setTimeout(() => {
           serial.style.transform = "translate(-80%, 20%)";
           serial.style.opacity = "0";
@@ -134,7 +135,7 @@
         tearSound.play();
         serial.style.transition = "all 0.3s ease-out";
         serial.style.transform = "translateY(10%)";
-        window.navigator.vibrate([20]);
+        canVibrate && window.navigator.vibrate([20]);
         setTimeout(() => {
           serial.style.transform = "translate(80%, 20%)";
           serial.style.opacity = "0";
@@ -148,13 +149,13 @@
         //tearSound.play();
         serial.style.transition = "all 0.15s ease-out";
         serial.style.transform = "translateY(10%)";
-        window.navigator.vibrate([10]);
+        canVibrate && window.navigator.vibrate([10]);
         setTimeout(() => {
           setTimeout(() => {
             serial.style.transform = "translate(-5%, 10%)";
             setTimeout(() => {
               serial.style.transform = "translate(5%, 10%)";
-              window.navigator.vibrate([35, 30, 35, 30, 35]);
+              canVibrate && window.navigator.vibrate([35, 30, 35, 30, 35]);
               setTimeout(() => {
                 serial.style.transform = "translate(-5%, 10%)";
                 setTimeout(() => {
