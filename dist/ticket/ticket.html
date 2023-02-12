@@ -95,8 +95,9 @@
       const checked = JSON.parse("<%=checked%>");
       const code = "<%=qr%>";
 
-      var serial = document.getElementById("cropline");
-      var hammer = new Hammer(serial);
+      const serial = document.getElementById("cropline");
+      const hammer = new Hammer(serial);
+      const tearSound = new Audio("/ticket_tear.mp3");
     </script>
 
     <% if(isAdmin === true && checked === false) { %>
@@ -115,9 +116,10 @@
       }
 
       hammer.on("swipeleft", function () {
+        tearSound.play();
         serial.style.transition = "all 0.3s ease-out";
         serial.style.transform = "translateY(10%)";
-        window.navigator.vibrate([50]);
+        window.navigator.vibrate([20]);
         setTimeout(() => {
           serial.style.transform = "translate(-80%, 20%)";
           serial.style.opacity = "0";
@@ -125,6 +127,7 @@
         }, 350);
       });
       hammer.on("swiperight", function () {
+        tearSound.play();
         serial.style.transition = "all 0.3s ease-out";
         serial.style.transform = "translateY(10%)";
         window.navigator.vibrate([20]);
@@ -138,14 +141,16 @@
     <% } else{ %>
     <script>
       hammer.on("swipe", function () {
+        //tearSound.play();
         serial.style.transition = "all 0.15s ease-out";
         serial.style.transform = "translateY(10%)";
+        window.navigator.vibrate([10]);
         setTimeout(() => {
           setTimeout(() => {
             serial.style.transform = "translate(-5%, 10%)";
             setTimeout(() => {
               serial.style.transform = "translate(5%, 10%)";
-              window.navigator.vibrate([50, 30, 50, 30, 50]);
+              window.navigator.vibrate([35, 30, 35, 30, 35]);
               setTimeout(() => {
                 serial.style.transform = "translate(-5%, 10%)";
                 setTimeout(() => {
