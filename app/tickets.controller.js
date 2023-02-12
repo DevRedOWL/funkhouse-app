@@ -1,7 +1,9 @@
 const express = require("express");
+const QRCode = require("qrcode");
+
 const { app } = require("./config.js");
 const { FunkhouseTicket, Op, sequelize } = require("./db.js");
-const QRCode = require("qrcode");
+const adminGuard = require("./admin.guard.js");
 
 const router = express.Router();
 
@@ -9,7 +11,7 @@ router.get("/", (req, res) => {
   return res.send("Tickets?");
 });
 
-router.get("/find/:name", async (req, res) => {
+router.get("/find/:name", adminGuard(), async (req, res) => {
   const { name } = req.params;
   const tickets = await FunkhouseTicket.findAll({
     where: {
@@ -35,7 +37,7 @@ router.get("/:code", async (req, res) => {
     checked: ticket.checked,
     social: ticket.social,
     qr: ticket.code,
-    isAdmin: true,
+    isAdmin: req?.signedCookies?.isAdmin === "true",
   });
 });
 
@@ -46,7 +48,7 @@ router.get("/:code/qr", async (req, res) => {
   res.send(Buffer.from(qrcode.split(",")[1], "base64"));
 });
 
-router.get("/:code/check", async (req, res) => {
+router.get("/:code/check", adminGuard(), async (req, res) => {
   const { code } = req.params;
   const ticket = await FunkhouseTicket.findOne({
     where: { code },
