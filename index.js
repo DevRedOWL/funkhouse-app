@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = 80;
+const port = process.env.APP_PORT;
 const http = require("http").Server(app);
 const path = require("path");
 
@@ -16,10 +16,13 @@ const csv = require("csv-parser");
 const fs = require("fs");
 const db = [];
 
+app.use(express.static("dist"));
+
 app.get("/findTicket", (req, res) => {
   const { name, surname } = req.query;
   console.log(name, surname);
-  if (!name || !surname) return res.status(404).send("Не найдено");
+  if (!name || !surname)
+    return res.status(404).send("Не введены имя или фамилия");
 
   const nameFilter = db.filter(
     (item) => item.NAME.toLowerCase().indexOf(name.toLowerCase()) !== -1
@@ -28,9 +31,9 @@ app.get("/findTicket", (req, res) => {
     (item) => item.SURNAME.toLowerCase().indexOf(surname.toLowerCase()) !== -1
   );
 
-  if (surnameFilter.length == 0) res.status(400).send("Не найдено");
+  if (surnameFilter.length == 0) res.status(400).send("Гость не найден");
   if (surnameFilter.length > 1)
-    res.status(400).send("Найдено больше одного человека");
+    res.status(400).send("Найдено больше одного человека, уточните данные");
 
   const result = surnameFilter[0];
   return res.send({ id: result.ID });
@@ -95,7 +98,7 @@ fs.createReadStream("db.csv")
       require("dns").lookup(
         require("os").hostname(),
         function (error, address, family) {
-          console.log("HTTP ready");
+          console.log(`HTTP ready on :${address}:${port}`);
         }
       );
     });
