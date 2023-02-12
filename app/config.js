@@ -2,7 +2,8 @@ require("dotenv").config();
 
 exports.app = {
   port: process.env.APP_PORT || 3000,
-  defaultPrice: process.env.APP_DEFAULT_PRICE,
+  defaultPrice: Number(process.env.APP_DEFAULT_PRICE) || 0,
+  fakeTickets: Number(process.env.APP_FAKE_TICKETS) || 0,
 };
 
 exports.db = {

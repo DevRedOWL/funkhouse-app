@@ -13,14 +13,22 @@ app.set("views", path.join(__dirname, "../dist/ticket"));
 app.use(express.static("dist"));
 
 app.get("/", (req, res) => {
-  return res.sendFile(__dirname + "/dist/splash.png");
+  return res.sendFile(path.join(__dirname, "../dist/splash.png"));
 });
 
 app.use("/tickets", TicketsController);
 app.use("/admin", AdminController);
 
-app.get("/splash.png", (req, res) => {
-  return res.sendFile(__dirname + "/dist/splash.png");
+app.use(function (err, req, res, next) {
+  console.error(err);
+  if (res.headersSent) {
+    return next(err);
+  }
+  return res.status(err.status || 500).send({ message: error.message });
+});
+
+process.on("unhandledRejection", (error) => {
+  console.error("unhandledRejection", error.message);
 });
 
 module.exports = app;

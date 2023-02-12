@@ -1,6 +1,8 @@
 body {
-  background-color: Thistle;
+  background-color: #f5c3fb;
   font-family: "Yanone Kaffeesatz", sans-serif;
+  height: 100%;
+  overflow: hidden;
   font-weight: 600;
 }
 
@@ -12,14 +14,14 @@ img {
 .ticket {
   width: 400px;
   background-color: white;
-  margin: 25px auto;
+  margin: 25px auto 0 auto;
   position: relative;
 }
 
 .holes-top {
   height: 50px;
   width: 50px;
-  background-color: Thistle;
+  background-color: #f5c3fb;
   border-radius: 50%;
   position: absolute;
   left: 50%;
@@ -31,7 +33,7 @@ img {
   content: "";
   height: 50px;
   width: 50px;
-  background-color: Thistle;
+  background-color: #f5c3fb;
   position: absolute;
   border-radius: 50%;
 }
@@ -44,7 +46,7 @@ img {
 
 .holes-lower {
   position: relative;
-  margin: 25px;
+  margin: 0px 25px;
   border: 1px dashed #aaa;
 }
 .holes-lower:before,
@@ -52,7 +54,7 @@ img {
   content: "";
   height: 50px;
   width: 50px;
-  background-color: Thistle;
+  background-color: #f5c3fb;
   position: absolute;
   border-radius: 50%;
 }
@@ -115,7 +117,6 @@ table td {
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding-bottom: 25px;
 }
 .serial table {
   border-collapse: collapse;
@@ -129,4 +130,76 @@ table td {
 .numbers td {
   font-size: 16px;
   text-align: center;
+}
+
+/* Animations */
+#ticket_checked {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 48px;
+}
+
+h2 {
+  font-family: Helvetica;
+  font-size: 36px;
+  margin-top: 36px;
+  color: #21897E;
+  opacity: 0;
+}
+/* input[type="checkbox"]:checked ~  */
+h2 {
+  animation: 0.6s title ease-in-out;
+  animation-delay: 1.2s;
+  /*播放動畫後停留在最後一格*/
+  animation-fill-mode: forwards;
+}
+
+.circle {
+  stroke-dasharray: 119.4;
+  stroke-dashoffset: 119.4;
+  /*畫出圈圈 dashoffset:1194->0*/
+}
+/* input[type="checkbox"]:checked + svg  */
+.circle {
+  animation: circle 1s ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+.tick {
+  stroke-dasharray: 35;
+  stroke-dashoffset: 35;
+  /*畫出勾勾 dashoffset:350->0 */
+}
+/* input[type="checkbox"]:checked +  */
+svg .tick {
+  animation: tick 0.8s ease-out;
+  animation-fill-mode: forwards;
+  animation-delay: 0.95s;
+}
+@keyframes circle {
+  from {
+    stroke-dashoffset: 119.4;
+  }
+  to {
+    stroke-dashoffset: 238.8;
+  }
+}
+
+@keyframes tick {
+  from {
+    stroke-dashoffset: 35;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes title {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
