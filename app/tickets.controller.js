@@ -4,6 +4,8 @@ const QRCode = require("qrcode");
 const { app } = require("./config.js");
 const { FunkhouseTicket, Op, sequelize } = require("./db.js");
 const adminGuard = require("./admin.guard.js");
+const { generateName } = require("./helpers.js");
+const { v4 } = require("uuid");
 
 const router = express.Router();
 
@@ -38,6 +40,19 @@ router.get("/find/:name", adminGuard(), async (req, res) => {
     limit: 6,
   });
   return res.send({ data: tickets });
+});
+
+router.get("/random", async (req, res) => {
+  return res.render("./ticket.html", {
+    id: -1,
+    name: generateName(),
+    price: 800,
+    checked: false,
+    social: "TEST",
+    qr: v4(),
+    premium: false,
+    isAdmin: req?.signedCookies?.isAdmin === "true",
+  });
 });
 
 router.get("/:code", async (req, res) => {

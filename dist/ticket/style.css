@@ -1,5 +1,6 @@
 :root {
-  --bg-color: #f5c3fb;
+  --bg-color: #00000000;
+
   --ticket-color: white;
   --golden-color: radial-gradient(
       ellipse farthest-corner at right bottom,
@@ -51,6 +52,7 @@ img {
   background: var(--ticket-color);
   margin: 25px auto 0 auto;
   position: relative;
+  transition: all 1s ease-in-out;
 }
 
 .holes-top {
@@ -82,7 +84,7 @@ img {
 .holes-lower {
   position: relative;
   margin: 0px 25px;
-  border: 1px dashed #aaa;
+  border: 1px dashed var(--bg-color);
 }
 .holes-lower:before,
 .holes-lower:after {
@@ -107,7 +109,7 @@ img {
 }
 
 .cinema {
-  color: #aaa;
+  color: var(--bg-color);
   font-size: 22px;
 }
 
@@ -178,12 +180,13 @@ table td {
   right: 0;
   margin-left: auto;
   margin-right: auto;
+  color: #ebebeb;
 }
 
 .branding a {
   text-decoration: none;
   font-weight: 500;
-  color: #2e2836;
+  color: #ebebeb;
 }
 
 /* Animations */
@@ -199,7 +202,6 @@ h2 {
   font-family: Helvetica;
   font-size: 36px;
   margin-top: 36px;
-  color: #21897e;
   opacity: 0;
 }
 /* input[type="checkbox"]:checked ~  */

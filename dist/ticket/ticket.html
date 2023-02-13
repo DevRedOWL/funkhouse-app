@@ -31,11 +31,49 @@
     />
     <link rel="stylesheet" href="/vendor/meyer-reset.css" />
     <link rel="stylesheet" href="/ticket/style.css" />
-    <style></style>
+    <script>
+      const randomColor = (() => {
+        const randomInt = (min, max) => {
+          return Math.floor(Math.random() * (max - min + 1)) + min;
+        };
+
+        const stringToColour = function (str) {
+          var hash = 0;
+          for (var i = 0; i < str.length; i++) {
+            hash = str.charCodeAt(i) + ((hash << 5) - hash);
+          }
+          var colour = "#";
+          for (var i = 0; i < 3; i++) {
+            var value = (hash >> (i * 8)) & 0xff;
+            colour += ("00" + value.toString(16)).substr(-2);
+          }
+          return colour;
+        };
+
+        // Color from id
+        return stringToColour("<%=name%><%=id%>");
+
+        // Hue
+        // return (() => {
+        //   var h = randomInt(66, 360);
+        //   var s = randomInt(42, 98);
+        //   var l = randomInt(40, 90);
+        //   return `hsl(${h},${s}%,${l}%)`;
+        // })();
+
+        // Dark
+        // let color = "#";
+        // for (let i = 0; i < 3; i++)
+        //   color += (
+        //     "0" + Math.floor((Math.random() * Math.pow(24, 2)) / 2).toString(16)
+        //   ).slice(-2);
+        // return color;
+      })();
+    </script>
   </head>
   <body scroll="no">
     <!-- Heading of the ticket -->
-    <div class="ticket" style="z-index: 1">
+    <div class="ticket" style="z-index: 2; opacity: 0">
       <div class="holes-top"></div>
       <div class="title">
         <p class="cinema"><%= name %></p>
@@ -70,7 +108,7 @@
       <svg width="40" height="40" transform="scale(2)">
         <circle
           fill="none"
-          stroke="#3BA99C"
+          stroke="#ebebeb"
           stroke-width="2.5"
           cx="20"
           cy="20"
@@ -81,7 +119,7 @@
         ></circle>
         <polyline
           fill="none"
-          stroke="#21897E"
+          stroke="#fff"
           stroke-width="3"
           points="8.8,21.4 17.3,28.4 30.4,13.8"
           stroke-linecap="round"
@@ -89,14 +127,14 @@
           class="tick"
         ></polyline>
       </svg>
-      <h2 id="confirmed">Билет проверен</h2>
+      <h2 id="confirmed" style="color: #fff">Билет проверен</h2>
     </div>
 
     <!-- After Cropline -->
     <div
       id="cropline"
       class="ticket"
-      style="margin: -1px auto 0 auto; z-index: 0"
+      style="margin: -1px auto 0 auto; z-index: 1; opacity: 0"
     >
       <div class="holes-lower"></div>
       <div id="serial" class="serial">
@@ -107,12 +145,17 @@
     <script src="/vendor/hammer.js"></script>
 
     <script>
+      $("document").ready(() => {
+        document.documentElement.style.setProperty("--bg-color", randomColor);
+        $(".ticket").css("opacity", 1);
+      });
       const checked = JSON.parse("<%=checked%>");
       const code = "<%=qr%>";
 
       const serial = document.getElementById("cropline");
       const hammer = new Hammer(serial);
       const tearSound = new Audio("/ticket_tear.mp3");
+      const noTearSound = new Audio("/bus_ticket_tear.mp3");
       const canVibrate = window?.navigator?.vibrate;
     </script>
 
@@ -170,13 +213,13 @@
           serial.style.transform = "translate(80%, 20%)";
           serial.style.opacity = "0";
           checkTicket();
-        }, 3500000);
+        }, 350);
       });
     </script>
     <% } else{ %>
     <script>
       hammer.on("swipe", function () {
-        //tearSound.play();
+        noTearSound.play();
         serial.style.transition = "all 0.15s ease-out";
         serial.style.transform = "translateY(10%)";
         canVibrate && window.navigator.vibrate([10]);
@@ -204,7 +247,7 @@
       });
     </script>
     <% } %>
-    <p class="branding">
+    <p class="branding" style="z-index: 0">
       Designed by
       <a href="http://wareandsoft.com/">Ware&Soft Digital</a>
     </p>
