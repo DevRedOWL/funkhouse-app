@@ -41,7 +41,7 @@
         <p class="cinema"><%= name %></p>
         <% if(checked === true){ %>
         <p class="movie-title" style="color: #f71735">Использован</p>
-        <% } else{ %>
+        <% } else { %>
         <p class="movie-title" style="color: #488b49">Не использован</p>
         <% } %>
       </div>
@@ -55,10 +55,10 @@
             <th>НОМЕР БИЛЕТА</th>
             <th>СОЦ. СЕТЬ</th>
           </tr>
-          <tr>
-            <td><%= price %></td>
-            <td><%= id %></td>
-            <td><%= social %></td>
+          <tr id="info-values">
+            <td id="footer-price"><%= price %></td>
+            <td id="footer-id"><%= id %></td>
+            <td id="footer-social"><%= social %></td>
           </tr>
         </table>
       </div>
@@ -89,7 +89,7 @@
           class="tick"
         ></polyline>
       </svg>
-      <h2>Билет проверен</h2>
+      <h2 id="confirmed">Билет проверен</h2>
     </div>
 
     <!-- After Cropline -->
@@ -100,7 +100,7 @@
     >
       <div class="holes-lower"></div>
       <div id="serial" class="serial">
-        <img src="/tickets/<%=qr%>/qr" alt="" />
+        <img src="/tickets/<%=qr%>/qr?bg=00000000" alt="" />
       </div>
     </div>
     <script src="/vendor/jq.js"></script>
@@ -116,7 +116,26 @@
       const canVibrate = window?.navigator?.vibrate;
     </script>
 
-    <% if(isAdmin === true && checked === false) { %>
+    <% if(premium === true) { %>
+    <!-- FIXME: Branding -->
+    <script>
+      $("document").ready(() => {
+        $(".ticket").addClass("bg-gold");
+        $(".movie-title").css("color", "#0e0e0e");
+        $(".movie-title").text("Не использован");
+        $(".cinema").css("color", "#785712");
+        document.documentElement.style.setProperty("--bg-color", "#1e1e1e");
+        $("svg").children()[0].setAttribute("stroke", "#b9861f");
+        $("svg").children()[1].setAttribute("stroke", "#f4b32f");
+        $("#confirmed").css("color", "#f4b32f");
+        $("#footer-social").text("Premium");
+        $("#info-values").css("color", "#fdb931");
+        $(".branding").css("color", "#fefefe");
+        $(".branding a").css("color", "#f4b32f");
+      });
+    </script>
+    <% } %> <% if(isAdmin === true && checked === false || premium === true) {
+    %>
     <script>
       $(".movie-title")[0].text = "test";
       async function checkTicket() {
@@ -151,7 +170,7 @@
           serial.style.transform = "translate(80%, 20%)";
           serial.style.opacity = "0";
           checkTicket();
-        }, 350);
+        }, 3500000);
       });
     </script>
     <% } else{ %>
@@ -174,7 +193,7 @@
                   setTimeout(() => {
                     serial.style.transform = "translate(0%, 10%)";
                     setTimeout(() => {
-                      serial.style.transform = "translate(0%, 0%)";
+                      serial.style.transform = "";
                     }, 120);
                   }, 100);
                 }, 100);
@@ -185,26 +204,9 @@
       });
     </script>
     <% } %>
-    <p
-      style="
-      font-size: 12px;
-        bottom: 20px;
-        font-family: sans-serif;
-        font-weight: 100;
-        position: absolute;
-        display: inline-table;
-        left: 0;
-        right: 0;
-        margin-left: auto;
-        margin-right: auto;
-      "
-    >
+    <p class="branding">
       Designed by
-      <a
-        style="text-decoration: none; font-weight: 500; color: #2e2836"
-        href="http://wareandsoft.com/"
-        >Ware&Soft Digital</a
-      >
+      <a href="http://wareandsoft.com/">Ware&Soft Digital</a>
     </p>
   </body>
 </html>

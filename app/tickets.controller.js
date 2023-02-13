@@ -48,20 +48,25 @@ router.get("/:code", async (req, res) => {
   if (!ticket) {
     return res.sendStatus(404);
   }
+  const isPremium = app.premiumTickets.indexOf(ticket.id) !== -1;
   return res.render("./ticket.html", {
-    id: app.fakeTickets + ticket.id,
+    id: ticket.id + (isPremium ? 0 : app.fakeTickets),
     name: ticket.name,
     price: ticket.price,
     checked: ticket.checked,
     social: ticket.social,
     qr: ticket.code,
+    premium: isPremium,
     isAdmin: req?.signedCookies?.isAdmin === "true",
   });
 });
 
 router.get("/:code/qr", async (req, res) => {
   const { code } = req.params;
-  const qrcode = await QRCode.toDataURL(`http://funkhouse.ru/ticket/${code}`);
+  const { bg, fg } = req.query;
+  const qrcode = await QRCode.toDataURL(`http://funkhouse.ru/ticket/${code}`, {
+    color: { dark: fg || "#000000", light: bg || "#ffffff" },
+  });
   res.setHeader("Content-Type", "image/png");
   res.send(Buffer.from(qrcode.split(",")[1], "base64"));
 });
@@ -72,7 +77,7 @@ router.get("/:code/check", adminGuard(), async (req, res) => {
     where: { code },
   });
 
-  if (ticket.checked) {
+  if (ticket.checked && app.premiumTickets.indexOf(ticket.id) === -1) {
     return res.status(403).send("Ticket is already checked");
   }
   const [updated] = await FunkhouseTicket.update(

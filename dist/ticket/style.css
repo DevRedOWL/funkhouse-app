@@ -1,5 +1,26 @@
+:root {
+  --bg-color: #f5c3fb;
+  --ticket-color: white;
+  --golden-color: radial-gradient(
+      ellipse farthest-corner at right bottom,
+      #fedb37 0%,
+      #fdb931 8%,
+      #9f7928 30%,
+      #8a6e2f 40%,
+      transparent 80%
+    ),
+    radial-gradient(
+      ellipse farthest-corner at left top,
+      #ffffff 0%,
+      #ffffac 8%,
+      #d1b464 25%,
+      #5d4a1f 62.5%,
+      #5d4a1f 100%
+    );
+}
+
 body {
-  background-color: #f5c3fb;
+  background-color: var(--bg-color);
   font-family: "Yanone Kaffeesatz", sans-serif;
   height: 100%;
   overflow: hidden;
@@ -20,9 +41,14 @@ img {
   height: auto;
 }
 
+.ticket.bg-gold {
+  background: var(--golden-color);
+  background-attachment: fixed;
+}
+
 .ticket {
   width: 400px;
-  background-color: white;
+  background: var(--ticket-color);
   margin: 25px auto 0 auto;
   position: relative;
 }
@@ -30,7 +56,7 @@ img {
 .holes-top {
   height: 50px;
   width: 50px;
-  background-color: #f5c3fb;
+  background-color: var(--bg-color);
   border-radius: 50%;
   position: absolute;
   left: 50%;
@@ -42,7 +68,7 @@ img {
   content: "";
   height: 50px;
   width: 50px;
-  background-color: #f5c3fb;
+  background-color: var(--bg-color);
   position: absolute;
   border-radius: 50%;
 }
@@ -63,7 +89,7 @@ img {
   content: "";
   height: 50px;
   width: 50px;
-  background-color: #f5c3fb;
+  background-color: var(--bg-color);
   position: absolute;
   border-radius: 50%;
 }
@@ -139,6 +165,25 @@ table td {
 .numbers td {
   font-size: 16px;
   text-align: center;
+}
+
+.branding {
+  font-size: 12px;
+  bottom: 20px;
+  font-family: sans-serif;
+  font-weight: 100;
+  position: absolute;
+  display: inline-table;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.branding a {
+  text-decoration: none;
+  font-weight: 500;
+  color: #2e2836;
 }
 
 /* Animations */

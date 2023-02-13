@@ -4,6 +4,7 @@ exports.app = {
   port: process.env.APP_PORT || 3000,
   defaultPrice: Number(process.env.APP_DEFAULT_PRICE) || 0,
   fakeTickets: Number(process.env.APP_FAKE_TICKETS) || 0,
+  premiumTickets: [0, 1],
   cookieSecret: process.env.APP_COOKIE_SECRET,
 };
 
