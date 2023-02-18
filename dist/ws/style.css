@@ -1,4 +1,8 @@
 :root {
+  --hue: 223; /* ? Default preloaded */
+  --hue-complimentary1: 253; /* ? Default preloaded */
+  --hue-complimentary2: 283; /* ? Default preloaded */
+
   --dark-color: hsl(var(--hue), 100%, 9%);
   --light-color: hsl(var(--hue), 95%, 98%);
   --base: hsl(var(--hue), 95%, 50%);
@@ -77,6 +81,7 @@ strong {
 }
 
 .text-gradient {
+  transition: all 0.5s ease-in-out 0s;
   background: linear-gradient(45deg, var(--base) 25%, var(--complimentary2));
   background-image: linear-gradient(
     45deg,

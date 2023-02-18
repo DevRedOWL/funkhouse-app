@@ -38,9 +38,15 @@
   <body scroll="no" style="height: 100%; overflow: hidden">
     <!-- partial:index.partial.html -->
     <!-- Canvas -->
-    <canvas class="orb-canvas"></canvas>
+    <canvas
+      class="orb-canvas hide-not-loaded"
+      style="opacity: 0; transition: all 0.7s ease-in-out 0s"
+    ></canvas>
     <!-- Overlay -->
-    <div class="overlay">
+    <div
+      class="overlay hide-not-loaded"
+      style="opacity: 0; transition: all 1s ease-in-out 0s"
+    >
       <div
         class="logo text-gradient overlay__btn--colors"
         style="

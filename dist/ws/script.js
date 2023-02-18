@@ -228,10 +228,21 @@ document
   });
 
 setInterval(() => {
-  colorPalette.setColors();
-  colorPalette.setCustomProperties();
+  document.getElementsByClassName("hide-not-loaded")[0].style.opacity = 0;
+  document.getElementsByClassName("text-gradient")[1].style.opacity = 0.8;
+  setTimeout(() => {
+    colorPalette.setColors();
+    colorPalette.setCustomProperties();
 
-  orbs.forEach((orb) => {
-    orb.fill = colorPalette.randomColor();
-  });
+    document.getElementsByClassName("text-gradient")[1].style.opacity = 1;
+    document.getElementsByClassName("hide-not-loaded")[0].style.opacity = 1;
+    orbs.forEach((orb) => {
+      orb.fill = colorPalette.randomColor();
+    });
+  }, 500);
 }, 15000);
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementsByClassName("hide-not-loaded")[0].style.opacity = 1;
+  document.getElementsByClassName("hide-not-loaded")[1].style.opacity = 1;
+});

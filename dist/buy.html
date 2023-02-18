@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <iframe
+      width="600"
+      height="800"
+      src="https://moneta.ru/assistant.widget?
+MNT_ID=96956301&MNT_TEST_MODE=1&MNT_AMOUNT=1"
+    ></iframe>
+  </body>
+  <script>
+    jQuery(document).ready(function ($) {
+      // page is ready
+      var pawFormContent = $("#payment-form").html();
+      if (pawFormContent != undefined && pawFormContent != "") {
+        var pawFormParent = $("#payment-form").parent();
+        var pawSuccess = $(".success").html();
+        // generate iframe code
+        var pawFormData = $("#payment-form").serialize();
+        var pawIframeLink =
+          "https://www.payanyway.ru/assistant.widget?" + pawFormData;
+        var pawIframe =
+          '<h1>Оплата заказа:</h1><iframe width="600" height="800" src="' +
+          pawIframeLink +
+          '">iframe is not supported</iframe>';
+        if (pawSuccess != undefined && pawSuccess != "") {
+          $(".success").html(pawIframe);
+        } else {
+          pawFormParent.html(pawIframe);
+        }
+        // remove paw payment button
+        $("#payment-form").remove();
+      }
+    });
+  </script>
+</html>
