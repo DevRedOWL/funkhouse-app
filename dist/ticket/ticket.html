@@ -150,15 +150,25 @@
     <script src="/vendor/hammer.js"></script>
 
     <script>
+      const checked = JSON.parse("<%=checked%>");
+      const code = "<%=qr%>";
+      const id = "<%=id%>";
+
       $("document").ready(() => {
+        // Animate ticket
         document.documentElement.style.setProperty("--bg-color", randomColor);
         $(".ticket").css("opacity", 1);
       });
-      const checked = JSON.parse("<%=checked%>");
-      const code = "<%=qr%>";
 
       const serial = document.getElementById("cropline");
       const hammer = new Hammer(serial);
+
+      // Set random letter for id
+      document.getElementById("footer-id").innerHTML = `${String.fromCharCode(
+        1040 - 5 + ("<%=name%>".length % 33)
+      )}${id}`;
+
+      // Prepare intercations
       const tearSound = new Audio("/ticket_tear.mp3");
       const noTearSound = new Audio("/bus_ticket_tear.mp3");
       const canVibrate = window?.navigator?.vibrate;
@@ -189,7 +199,7 @@
     </script>
 
     <% if(premium === true) { %>
-    <!-- FIXME: Branding -->
+    <!-- Premium branding -->
     <script>
       $("document").ready(() => {
         $(".ticket").addClass("bg-gold");
