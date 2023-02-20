@@ -194,7 +194,6 @@
       $("document").ready(() => {
         $(".ticket").addClass("bg-gold");
         $(".movie-title").css("color", "#0e0e0e");
-        $(".movie-title").text("Не использован");
         $(".cinema").css("color", "#785712");
         document.documentElement.style.setProperty("--bg-color", "#1e1e1e");
         $("svg").children()[0].setAttribute("stroke", "#b9861f");
@@ -206,8 +205,7 @@
         $(".branding a").css("color", "#f4b32f");
       });
     </script>
-    <% } %> <% if(isAdmin === true && checked === false || premium === true) {
-    %>
+    <% } %> <% if(isAdmin === true && checked === false) { %>
     <script>
       async function checkTicket() {
         const { data } = await (await fetch(`/tickets/${code}/check`)).json();
@@ -225,7 +223,7 @@
         tearSound.play();
         serial.style.transition = "all 0.3s ease-out";
         serial.style.transform = "translateY(10%)";
-        canVibrate && window?.navigator?.vibrate([20]);
+        canVibrate && window.navigator.vibrate([20]);
         setTimeout(() => {
           serial.style.transform = "translate(-80%, 20%)";
           serial.style.opacity = "0";

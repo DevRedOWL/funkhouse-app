@@ -188,6 +188,7 @@
       const hammer = new Hammer(ticket);
       hammer.on("swipeleft", function () {
         tearSound.play();
+        window?.navigator?.vibrate([20]);
         ticket.style.transform = "translate(-50%, 20%)";
         ticket.style.opacity = "0";
         localStorage.removeItem('ticket');

@@ -92,7 +92,7 @@ router.get("/:code/check", adminGuard(), async (req, res) => {
     where: { code },
   });
 
-  if (ticket.checked && app.premiumTickets.indexOf(ticket.id) === -1) {
+  if (ticket.checked) {
     return res.status(403).send("Ticket is already checked");
   }
   const [updated] = await FunkhouseTicket.update(
