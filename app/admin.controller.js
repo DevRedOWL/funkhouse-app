@@ -14,6 +14,7 @@ router.get("/login", (req, res) => {
   if (token === cookieSecret) {
     res.cookie("isAdmin", "true", {
       signed: true,
+      expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30),
     });
     return res.redirect("/admin");
   } else res.status(403).send({ message: "А тебя это ебать не должно" });
