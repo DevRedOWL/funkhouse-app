@@ -15,6 +15,13 @@ app.set("view engine", "html");
 app.set("views", path.join(__dirname, "../dist/ticket"));
 app.use(express.static("dist"));
 
+app.enable("trust proxy");
+app.use((req, res, next) => {
+  req.secure || req.headers.host === "localhost"
+    ? next()
+    : res.redirect("https://" + req.headers.host + req.url);
+});
+
 app.get("/", (req, res) => {
   if (req.get("host") === "wareandsoft.com") {
     return res.sendFile(path.join(__dirname, "../dist/ws/index.html"));

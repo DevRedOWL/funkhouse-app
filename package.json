@@ -15,7 +15,8 @@
     "nodemon": "^2.0.20",
     "pg": "^8.9.0",
     "qrcode": "^1.5.1",
-    "sequelize": "^6.28.0"
+    "sequelize": "^6.28.0",
+    "tls": "^0.0.1"
   },
   "scripts": {
     "start": "node index.js",

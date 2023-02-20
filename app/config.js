@@ -1,7 +1,8 @@
 require("dotenv").config();
 
 exports.app = {
-  port: process.env.APP_PORT || 3000,
+  http_port: process.env.APP_PORT || 3000,
+  https_port: process.env.SSL_PORT || 3001,
   defaultPrice: Number(process.env.APP_DEFAULT_PRICE) || 0,
   fakeTickets: Number(process.env.APP_FAKE_TICKETS) || 0,
   premiumTickets: [0, 1],
