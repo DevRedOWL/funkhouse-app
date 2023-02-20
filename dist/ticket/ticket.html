@@ -83,7 +83,7 @@
         <p class="movie-title" style="color: #488b49">Не использован</p>
         <% } %>
       </div>
-      <div class="poster" style="cursor: pointer;">
+      <div class="poster" style="cursor: pointer">
         <a href="/"><img src="/splash/splash-min.jpg" alt="Funkhouse" /></a>
       </div>
       <div class="info">
@@ -138,7 +138,12 @@
     >
       <div class="holes-lower"></div>
       <div id="serial" class="serial">
-        <img src="/tickets/<%=qr%>/qr?bg=00000000" alt="" />
+        <img
+          class="qrImage"
+          src="/tickets/<%=qr%>/qr?bg=00000000"
+          alt=""
+          onClick="toggleBlur()"
+        />
       </div>
     </div>
     <script src="/vendor/jq.js"></script>
@@ -157,6 +162,30 @@
       const tearSound = new Audio("/ticket_tear.mp3");
       const noTearSound = new Audio("/bus_ticket_tear.mp3");
       const canVibrate = window?.navigator?.vibrate;
+
+      // Set my ticket
+      if (!localStorage.getItem("ticket")) {
+        localStorage.setItem("ticket", "<%=qr%>");
+      }
+
+      // Blur the QR
+      const qrCode = document.getElementsByClassName("qrImage")[0];
+      if (localStorage.getItem("blur") === "true") {
+        history.pushState(null, null, "/");
+        qrCode.classList.add("blur");
+      }
+      const toggleBlur = () => {
+        console.log(localStorage.getItem("blur"));
+        if (localStorage.getItem("blur") === "true") {
+          localStorage.setItem("blur", false);
+          history.pushState(null, null, "/tickets/<%=qr%>");
+          qrCode.classList.remove("blur");
+        } else {
+          qrCode.classList.add("blur");
+          history.pushState(null, null, "/");
+          localStorage.setItem("blur", true);
+        }
+      };
     </script>
 
     <% if(premium === true) { %>
@@ -180,7 +209,6 @@
     <% } %> <% if(isAdmin === true && checked === false || premium === true) {
     %>
     <script>
-      $(".movie-title")[0].text = "test";
       async function checkTicket() {
         const { data } = await (await fetch(`/tickets/${code}/check`)).json();
         if (data.success === true) {

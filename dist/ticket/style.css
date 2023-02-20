@@ -259,3 +259,13 @@ svg .tick {
     opacity: 1;
   }
 }
+
+/* Blur on tap */
+.qrImage {
+  filter: blur(0px); /* set initial blur value to 0px */
+  transition: filter 0.5s ease; /* add a smooth transition effect */
+}
+
+.qrImage.blur {
+  filter: blur(15px); /* set blur value to 10px when .blur class is applied */
+}
