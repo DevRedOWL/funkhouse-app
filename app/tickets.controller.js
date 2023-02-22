@@ -79,7 +79,7 @@ router.get("/:code", async (req, res) => {
 router.get("/:code/qr", async (req, res) => {
   const { code } = req.params;
   const { bg, fg } = req.query;
-  const qrcode = await QRCode.toDataURL(`http://funkhouse.ru/ticket/${code}`, {
+  const qrcode = await QRCode.toDataURL(`http://funkhouse.ru/tickets/${code}`, {
     color: { dark: fg || "#000000", light: bg || "#ffffff" },
   });
   res.setHeader("Content-Type", "image/png");
