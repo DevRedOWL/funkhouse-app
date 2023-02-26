@@ -19,13 +19,14 @@ router.get("/", adminGuard(), async (req, res) => {
 });
 
 router.post("/", adminGuard(), async (req, res) => {
-  const { name, checked, social } = req.body;
+  const { name, checked, social, price = app.defaultPrice } = req.body;
   if (!name || checked === undefined)
     return res.status(400).send({ message: "name or checked is false" });
 
   const ticket = await FunkhouseTicket.create({
     name,
     checked,
+    price,
     social: social?.toUpperCase() || "НА ВХОДЕ",
   });
   return res.send({ data: ticket });

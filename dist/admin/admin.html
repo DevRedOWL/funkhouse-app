@@ -7,9 +7,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="msapplication-TileColor" content="#da532c" />
     <meta name="theme-color" content="#da532c" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/icons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/icons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/icons/favicon-16x16.png"
+    />
     <link rel="manifest" href="/icons/site.webmanifest" />
     <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#f5c3fb" />
     <link
@@ -21,10 +35,7 @@
     <script src="/vendor/jq.js"></script>
     <script src="/vendor/smart_placeholders.js"></script>
     <script src="/vendor/parsley.js"></script>
-    <link
-      rel="stylesheet"
-      href="/vendor/fa.css"
-    />
+    <link rel="stylesheet" href="/vendor/fa.css" />
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
@@ -56,6 +67,14 @@
                   <option>Instagram</option>
                   <option>Telegram</option>
                   <option>Vk</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="socialDropdown">Тип билета:</label>
+                <select class="form-control" id="ticketTypeDropdown">
+                  <option>Обычный</option>
+                  <option>Парный</option>
+                  <option>Проходка</option>
                 </select>
               </div>
             </form>
@@ -190,6 +209,9 @@
 
       $(document).ready(() => {
         $("#sellSubmit").click(() => {
+          const ticketType = $("#ticketTypeDropdown").val();
+          const price =
+            ticketType === "Парный" ? 500 : ticketType === "Проходка" ? 0 : 300;
           const social = $("#socialDropdown").val();
           const name = input.value;
           fetch("/tickets/", {
@@ -197,7 +219,12 @@
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ name, social, checked: false }),
+            body: JSON.stringify({
+              name,
+              price,
+              social: price === 0 ? ticketType : social,
+              checked: false,
+            }),
           })
             .then((response) => response.json())
             .then((data) => {
