@@ -95,13 +95,15 @@
         <div class="resultBox">
           <!-- here list are inserted from javascript -->
         </div>
-        <div class="icon"><i class="fas fa-search"></i></div>
+        <div class="icon">
+          <i id="searchBtn" class="fas fa-search" onClick="clearSearch()"></i>
+        </div>
       </div>
-      <button class="check" onClick="sellAndCheck()">
+      <button class="check" onClick="sellAndCheck()" disabled>
         Отметить проход
         <div class="icon"><i class="fas fa-check"></i></div>
       </button>
-      <button class="sell" onClick="sell()">
+      <button class="sell" onClick="sell()" disabled>
         Продажа
         <div class="icon">
           <i class="fas fa-dollar-sign"></i>
@@ -171,6 +173,12 @@
         let userData = e.target.value; //user enetered data
         let emptyArray = [];
         if (userData.length > 0) {
+          // UX
+          $(".sell")[0].disabled = false;
+          $(".check")[0].disabled = false;
+          $("#searchBtn").removeClass("fa-search").addClass("fa-trash");
+
+          // Fetch tickets
           const { data } = await (
             await fetch(`/tickets/find/${userData}`)
           ).json();
@@ -187,8 +195,7 @@
             allList[i].setAttribute("onclick", "select(this)");
           }
         } else {
-          showSuggestions([]);
-          searchInput.classList.remove("active"); //hide autocomplete box
+          clearSearch();
         }
       };
 
@@ -215,6 +222,15 @@
         }
       }
 
+      function clearSearch() {
+        input.value = "";
+        $(".sell")[0].disabled = true;
+        $(".check")[0].disabled = true;
+        $("#searchBtn").removeClass("fa-trash").addClass("fa-search");
+        showSuggestions([]);
+        searchInput.classList.remove("active"); //hide autocomplete box
+      }
+
       $(document).ready(() => {
         $("#sellSubmit").click(() => {
           const ticketType = $("#ticketTypeDropdown").val();
@@ -237,10 +253,10 @@
             .then((response) => response.json())
             .then((data) => {
               $("#sellTicketModal").modal("hide");
-              setTimeout(
-                () => (window.location.href = `/tickets/${data.data.code}`),
-                500
-              );
+              setTimeout(() => {
+                clearSearch();
+                window.location.href = `/tickets/${data.data.code}`;
+              }, 500);
             })
             .catch((error) => {
               $("#sellTicketModal").hide();
@@ -263,7 +279,7 @@
             .then((response) => response.json())
             .then((data) => {
               $("#ticket_checked").show();
-              input.value = "";
+              clearSearch();
               setTimeout(() => {
                 $("#ticket_checked").hide();
               }, 4000);

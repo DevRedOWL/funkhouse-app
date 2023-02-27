@@ -130,9 +130,19 @@ button.list {
   color: #f9f5ff;
 }
 
+button:disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+
+}
+
 button .icon {
   top: -3px;
   color: #f9f5ff;
+}
+
+button {
+  transition: all 0.2s ease-in;
 }
 
 /* Animations */
