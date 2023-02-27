@@ -1,0 +1,74 @@
+svg {
+  display: block;
+  margin-top: 20px;
+  width: 36px;
+}
+@media screen and (max-width: 800px) {
+  svg {
+    margin-top: 20px;
+    width: 40px;
+  }
+}
+
+button {
+  cursor: pointer;
+}
+
+#ticket {
+  transition: all 0.2s ease-in-out;
+}
+
+#ticket:hover {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+a:hover {
+  opacity: 0.8;
+}
+a {
+  transition: all 0.2s ease-in-out;
+}
+
+#splash {
+  animation: pulse 2s linear infinite;
+}
+
+@keyframes pulse {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  5% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+  15% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  55% {
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+  }
+  65% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  70% {
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+  }
+  80% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
