@@ -125,6 +125,11 @@ button.sell {
   color: #f9f5ff;
 }
 
+button.list {
+  background: #3083DC;
+  color: #f9f5ff;
+}
+
 button .icon {
   top: -3px;
   color: #f9f5ff;
