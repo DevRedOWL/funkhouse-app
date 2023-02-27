@@ -15,7 +15,7 @@ router.get("/", adminGuard(), async (req, res) => {
     count: tickets.length,
     revenue: tickets.reduce((acc, curr) => acc + curr.price, 0),
   };
-  const list = tickets.sort((t1, t2) => (t1.price > t2.price ? 1 : -1));
+  const list = tickets.sort((t1, t2) => t1.name.localeCompare(t2.name));
   return res.render("../tickets/tickets.html", { data, list });
 });
 

@@ -5,7 +5,7 @@ exports.app = {
   https_port: process.env.SSL_PORT || 3001,
   defaultPrice: Number(process.env.APP_DEFAULT_PRICE) || 0,
   fakeTickets: Number(process.env.APP_FAKE_TICKETS) || 0,
-  premiumTickets: [0, 1],
+  premiumTickets: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
   cookieSecret: process.env.APP_COOKIE_SECRET,
 };
 
