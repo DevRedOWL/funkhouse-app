@@ -1,27 +1,31 @@
 :root {
-  --bg-color: #00000000;
+  --bg-color: url("/splash/bg-min.jpg");
 
-  --ticket-color: white;
+  --ticket-color: url("/splash/ticket-min.png");
   --golden-color: radial-gradient(
       ellipse farthest-corner at right bottom,
       #fedb37 0%,
-      #fdb931 8%,
-      #9f7928 30%,
-      #8a6e2f 40%,
+      #fdb931 15%,
+      #9f7928 35%,
+      #8a6e2f 45%,
       transparent 80%
     ),
     radial-gradient(
       ellipse farthest-corner at left top,
       #ffffff 0%,
-      #ffffac 8%,
-      #d1b464 25%,
-      #5d4a1f 62.5%,
+      #ffffac 12%,
+      #d1b464 28%,
+      #5d4a1f 63.5%,
       #5d4a1f 100%
     );
 }
 
 body {
-  background-color: var(--bg-color);
+  background: var(--bg-color);
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  align-items: center;
   font-family: "Yanone Kaffeesatz", sans-serif;
   height: 100%;
   overflow: hidden;
@@ -58,7 +62,10 @@ img {
 .holes-top {
   height: 50px;
   width: 50px;
-  background-color: var(--bg-color);
+  background: var(--bg-color);
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
   border-radius: 50%;
   position: absolute;
   left: 50%;
@@ -70,7 +77,10 @@ img {
   content: "";
   height: 50px;
   width: 50px;
-  background-color: var(--bg-color);
+  background: var(--bg-color);
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
   position: absolute;
   border-radius: 50%;
 }
@@ -84,14 +94,17 @@ img {
 .holes-lower {
   position: relative;
   margin: 0px 25px;
-  border: 1px dashed var(--bg-color);
+  border: 1px dashed #222222;
 }
 .holes-lower:before,
 .holes-lower:after {
   content: "";
   height: 50px;
   width: 50px;
-  background-color: var(--bg-color);
+  background: var(--bg-color);
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
   position: absolute;
   border-radius: 50%;
 }
@@ -150,6 +163,10 @@ table td {
   font-size: 48px;
 }
 
+.poster:hover {
+  transform: scale(1.02);
+}
+
 .serial {
   display: flex;
   align-items: center;
@@ -167,26 +184,6 @@ table td {
 .numbers td {
   font-size: 16px;
   text-align: center;
-}
-
-.branding {
-  font-size: 12px;
-  bottom: 20px;
-  font-family: sans-serif;
-  font-weight: 100;
-  position: absolute;
-  display: inline-table;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  color: #ebebeb;
-}
-
-.branding a {
-  text-decoration: none;
-  font-weight: 500;
-  color: #ebebeb;
 }
 
 /* Animations */

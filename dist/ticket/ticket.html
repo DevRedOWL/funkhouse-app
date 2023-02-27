@@ -31,59 +31,23 @@
     />
     <link rel="stylesheet" href="/vendor/meyer-reset.css" />
     <link rel="stylesheet" href="/ticket/style.css" />
-    <script>
-      const randomColor = (() => {
-        const randomInt = (min, max) => {
-          return Math.floor(Math.random() * (max - min + 1)) + min;
-        };
-
-        const stringToColour = function (str) {
-          var hash = 0;
-          for (var i = 0; i < str.length; i++) {
-            hash = str.charCodeAt(i) + ((hash << 5) - hash);
-          }
-          var colour = "#";
-          for (var i = 0; i < 3; i++) {
-            var value = (hash >> (i * 8)) & 0xff;
-            colour += ("00" + value.toString(16)).substr(-2);
-          }
-          return colour;
-        };
-
-        // Color from id
-        return stringToColour("<%=name%><%=id%>");
-
-        // Hue
-        // return (() => {
-        //   var h = randomInt(66, 360);
-        //   var s = randomInt(42, 98);
-        //   var l = randomInt(40, 90);
-        //   return `hsl(${h},${s}%,${l}%)`;
-        // })();
-
-        // Dark
-        // let color = "#";
-        // for (let i = 0; i < 3; i++)
-        //   color += (
-        //     "0" + Math.floor((Math.random() * Math.pow(24, 2)) / 2).toString(16)
-        //   ).slice(-2);
-        // return color;
-      })();
-    </script>
   </head>
   <body scroll="no">
     <!-- Heading of the ticket -->
-    <div class="ticket" style="z-index: 2; opacity: 0">
+    <div class="ticket" style="z-index: 2; opacity: 0; overflow: hidden;">
       <div class="holes-top"></div>
       <div class="title">
         <p class="cinema"><%= name %></p>
         <% if(checked === true){ %>
-        <p class="movie-title" style="color: #f71735">Использован</p>
+        <p class="movie-title" style="color: #d64933">Использован</p>
         <% } else { %>
-        <p class="movie-title" style="color: #488b49">Не использован</p>
+        <p class="movie-title" style="color: #0c7c59">Не использован</p>
         <% } %>
       </div>
-      <div class="poster" style="cursor: pointer">
+      <div
+        class="poster"
+        style="cursor: pointer; transition: all 0.25s ease-in-out"
+      >
         <a href="/"><img src="/splash/splash-min.jpg" alt="Funkhouse" /></a>
       </div>
       <div class="info">
@@ -156,7 +120,6 @@
 
       $("document").ready(() => {
         // Animate ticket
-        document.documentElement.style.setProperty("--bg-color", randomColor);
         $(".ticket").css("opacity", 1);
       });
 
@@ -205,7 +168,7 @@
         $(".ticket").addClass("bg-gold");
         $(".movie-title").css("color", "#0e0e0e");
         $(".cinema").css("color", "#785712");
-        document.documentElement.style.setProperty("--bg-color", "#1e1e1e");
+        // document.documentElement.style.setProperty("--bg-color", "#1e1e1e");
         $("svg").children()[0].setAttribute("stroke", "#b9861f");
         $("svg").children()[1].setAttribute("stroke", "#f4b32f");
         $("#confirmed").css("color", "#f4b32f");
@@ -283,9 +246,31 @@
       });
     </script>
     <% } %>
-    <p class="branding" style="z-index: 0">
+
+    <p
+      class="branding"
+      style="
+        position: absolute;
+        bottom: 22px;
+        text-align: center;
+        font-size: 11px;
+        font-weight: 500;
+        z-index: 0;
+        color: #fefefe;
+        opacity: 0.6;
+        font-family: sans-serif;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+      "
+    >
       Designed by
-      <a href="http://wareandsoft.com/">Ware&Soft Digital</a>
+      <a
+        href="http://wareandsoft.com/"
+        style="color: #fddf64; outline: none; text-decoration: none"
+        >Ware&Soft Digital</a
+      >
     </p>
   </body>
 </html>

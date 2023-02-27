@@ -11,11 +11,56 @@ const router = express.Router();
 
 router.get("/", adminGuard(), async (req, res) => {
   const tickets = await FunkhouseTicket.findAll();
-  const result = {
+  const data = {
     count: tickets.length,
     revenue: tickets.reduce((acc, curr) => acc + curr.price, 0),
   };
-  return res.send(result);
+  const result = tickets
+    .sort((t1, t2) => (t1.price > t2.price ? 1 : -1))
+    .reduce(
+      (acc, ticket) =>
+        `${acc}
+      <tr>
+        <td>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" ${
+              ticket.checked ? "checked" : ""
+            } disabled>
+            <label class="form-check-label" for="flexCheckChecked">
+              <a href="/tickets/${
+                ticket.code
+              }" style="text-decoration: none; color: black;">${ticket.name}</a>
+            </label>
+          </div>
+        </td>
+        <td>${ticket.price}</td>
+        <td>${ticket.social}</td>
+        <td>${ticket.createdAt.toLocaleString("ru-RU")}</td>
+      </tr>`,
+      ""
+    );
+  const html = `<html>
+  
+  <head><link rel="stylesheet"href="/vendor/bootstrap.css"/></head>
+    <body>
+    <div class="container overflow-auto" style="margin-top: 10vh; height: calc(80vh - 50px); overflow: scroll;" >
+      <table class="table table-bordered table-striped table-responsive" style="display: table; margin: 0;">
+        <thead style="width: 100%; left: 0;right: 0;">
+          <tr><th style="width: 350px;">Имя</th><th>Цена</th><th>Тип</th><th>Дата продажи</th></tr>
+        </thead>
+        <tbody style="padding-top: 50px;">${result}</tbody>
+      </table>
+    </div>
+
+    <div class="container" style="height: 50px;">
+      <table class="table table-bordered table-striped table-responsive" style="display: table;">
+          <tr><th style="width: 350px;">Всего билетов: ${data.count}</th><th>Сумма: ${data.revenue}₽</th></tr>
+      </table>
+    </div>
+    </body>
+  </html>`;
+  console.log(html);
+  return res.send(html);
 });
 
 router.post("/", adminGuard(), async (req, res) => {
