@@ -51,8 +51,11 @@
         style="display: table"
       >
         <tr>
-          <th style="width: 350px">Всего билетов: <%= data.count %></th>
-          <th>Сумма: <%= data.revenue %>₽</th>
+          <th style="width: 350px">
+            <span style="font-weight: 200;">Билетов:</span> <%= list.filter(ticket=>ticket.checked === true).length %> / <%= data.count %>, 
+            <span style="font-weight: 200;">Человек:</span> <%= data.count + list.filter(ticket=>ticket.price === 500).length %>
+          </th>
+          <th><span style="font-weight: 200;">Сумма:</span>  <%= data.revenue %>₽</th>
         </tr>
       </table>
     </div>
