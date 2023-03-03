@@ -34,7 +34,7 @@
   </head>
   <body scroll="no">
     <!-- Heading of the ticket -->
-    <div class="ticket" style="z-index: 2; opacity: 0; overflow: hidden;">
+    <div class="ticket" style="z-index: 2; opacity: 0; overflow: hidden">
       <div class="holes-top"></div>
       <div class="title">
         <p class="cinema"><%= name %></p>
@@ -48,14 +48,16 @@
         class="poster"
         style="cursor: pointer; transition: all 0.25s ease-in-out"
       >
-        <a href="/"><img src="/splash/splash-min.jpg" alt="Funkhouse" /></a>
+        <a id="home_link" href="/"
+          ><img src="/splash/splash-min.jpg" alt="Funkhouse"
+        /></a>
       </div>
       <div class="info">
         <table>
           <tr>
-            <th>ЦЕНА</th>
-            <th>НОМЕР БИЛЕТА</th>
-            <th>СОЦ. СЕТЬ</th>
+            <th id="proce-caption">ЦЕНА</th>
+            <th id="id-caption">НОМЕР БИЛЕТА</th>
+            <th id="social-caption">СОЦ. СЕТЬ</th>
           </tr>
           <tr id="info-values">
             <td id="footer-price"><%= price %></td>
@@ -116,12 +118,18 @@
     <script>
       const checked = JSON.parse("<%=checked%>");
       const code = "<%=qr%>";
+      const social = "<%=social%>";
       const id = "<%=id%>";
 
       $("document").ready(() => {
         // Animate ticket
         $(".ticket").css("opacity", 1);
       });
+
+      // Ticket type design
+      if (social !== "INSTAGRAM" && social !== "TELEGRAM" && social !== "VK") {
+        document.getElementById("social-caption").innerHTML = "ТИП БИЛЕТА";
+      }
 
       const serial = document.getElementById("cropline");
       const hammer = new Hammer(serial);
@@ -147,7 +155,7 @@
         history.pushState(null, null, "/");
         qrCode.classList.add("blur");
       }
-      const toggleBlur = () => {
+      function toggleBlur() {
         console.log(localStorage.getItem("blur"));
         if (localStorage.getItem("blur") === "true") {
           localStorage.setItem("blur", false);
@@ -158,7 +166,7 @@
           history.pushState(null, null, "/");
           localStorage.setItem("blur", true);
         }
-      };
+      }
     </script>
 
     <% if(premium === true) { %>
@@ -273,4 +281,69 @@
       >
     </p>
   </body>
+
+  <% if(name === "Михаил Кашинский") { %>
+  <!-- KASHCOIN SPECIAL -->
+  <link rel="stylesheet" href="/ticket/kashcoin.css" />
+  <div id="kashcoin" style="opacity: 0; left: 0; top: 0">
+    <img src="/ticket/kashcoin.png" alt="Bouncing and spinning image" />
+  </div>
+  <script>
+    let opaCounter = 0;
+    const opaSound = new Audio("/ticket/kashcoin.mp3");
+    document.addEventListener("DOMContentLoaded", function () {
+      toggleBlur = () => {};
+      document.getElementById("kashcoin").style.opacity = "1";
+      document.getElementById("kashcoin").addEventListener("touchstart", () => {
+        opa();
+      });
+      document.getElementById("home_link").href = "#";
+      document.getElementById("id-caption").innerHTML = 'Счетчик "ОПА"';
+      document.getElementById("footer-id").innerHTML = `Поймай Мишаню`;
+      console.log("ОПА");
+
+      const cringeNames = [
+        "Миша",
+        "Михаил",
+        "Мишаня",
+        "Мишель",
+        "Михуил",
+        "Мишаньчик",
+        "Михайло",
+        "Майкл",
+        "MkSmc",
+      ];
+      const cringeSurames = [
+        "Каш",
+        "Кринжинский",
+        "Шафутинский",
+        "Кашинский",
+        "КашCoin",
+        "Студенческий",
+        "Отчисленский",
+        "Фейсерский",
+        "Музклубский",
+        "Кашперовский",
+        "Кальянский",
+        "Фрегатик",
+        "Зеленый Дракон",
+        "Санстрайковский",
+      ];
+      setInterval(() => {
+        document.getElementsByClassName("cinema")[0].innerHTML =
+          cringeNames[Math.floor(Math.random() * cringeNames.length)] +
+          " " +
+          cringeSurames[Math.floor(Math.random() * cringeSurames.length)];
+      }, 1000);
+    });
+
+    function opa() {
+      setTimeout;
+      opaSound.cloneNode(true).play();
+      opaCounter++;
+      document.getElementById("footer-id").innerHTML = opaCounter;
+    }
+  </script>
+  <!-- KASHCOIN SPECIAL -->
+  <% } %>
 </html>
