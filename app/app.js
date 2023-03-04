@@ -18,12 +18,16 @@ app.use(express.static("dist"));
 
 // Logging middleware
 app.use((req, res, next) => {
-  const { method, originalUrl, path } = req;
+  const { method, originalUrl, ip } = req;
   const start = performance.now();
   res.on("finish", () => {
     const { statusCode } = res;
     const duration = (performance.now() - start) | 0;
-    console.log(`${statusCode} | [${method}] ${originalUrl} ${duration}ms`);
+    console.log(
+      `${statusCode} | [${method}] ${decodeURIComponent(
+        originalUrl
+      )} ${ip} ${duration}ms`
+    );
   });
   next();
 });
