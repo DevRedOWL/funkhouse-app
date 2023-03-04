@@ -1,3 +1,18 @@
+# Useful scripts
+
+### Docker
+
+```sh
+docker compose up funkhouse-app --force-recreate --build -d
+docker builder prune && docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
+```
+
+### Git
+
+```
+git reset --hard origin/master
+```
+
 # Making SSL
 
 ## Install certbot and launch it

@@ -8,4 +8,9 @@ RUN apk update
 RUN apk upgrade
 RUN apk add coreutils
 
-CMD yarn && yarn run start:watch
+# Development startup
+# CMD yarn && yarn run start:watch
+
+# Production statrtup
+RUN npm install pm2 -g
+CMD yarn && yarn start:pm2

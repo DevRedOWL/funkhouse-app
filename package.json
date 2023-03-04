@@ -1,6 +1,6 @@
 {
   "name": "funkhouse",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "main": "index.js",
   "author": "Daniel Varentsov",
   "license": "MIT",
@@ -21,6 +21,7 @@
   "scripts": {
     "start": "node index.js",
     "start:watch": "nodemon -e js",
+    "start:pm2": "pm2 start index.js --name «funhouse-app» -i max --max-memory-restart 256M --watch --ignore-watch \"node_modules build\" --no-daemon",
     "up": "docker-compose down && docker-compose up --force-recreate --build -d"
   }
 }
