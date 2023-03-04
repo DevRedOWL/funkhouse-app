@@ -5,17 +5,18 @@
   "author": "Daniel Varentsov",
   "license": "MIT",
   "dependencies": {
-    "body-parser": "^1.20.1",
+    "body-parser": "^1.20.2",
     "cookie-parser": "^1.4.6",
     "csv-parser": "^3.0.0",
     "dotenv": "^16.0.3",
     "ejs": "^3.1.8",
     "express": "^4.18.2",
     "http": "^0.0.1-security",
-    "nodemon": "^2.0.20",
+    "nodemon": "^2.0.21",
+    "perf_hooks": "^0.0.1",
     "pg": "^8.9.0",
     "qrcode": "^1.5.1",
-    "sequelize": "^6.28.0",
+    "sequelize": "^6.29.0",
     "tls": "^0.0.1"
   },
   "scripts": {

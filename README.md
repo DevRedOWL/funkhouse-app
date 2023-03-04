@@ -5,6 +5,8 @@
 ```sh
 docker compose up funkhouse-app --force-recreate --build -d
 docker builder prune && docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
+docker exec funkhouse-app pm2 l
+docker logs funkhouse-app
 ```
 
 ### Git
@@ -13,7 +15,7 @@ docker builder prune && docker rmi $(docker images --filter "dangling=true" -q -
 git reset --hard origin/master
 ```
 
-# Making SSL
+# Configuring SSL
 
 ## Install certbot and launch it
 
