@@ -7,10 +7,15 @@ const domains = {
 };
 
 function getSecureContext(domain) {
-  return tls.createSecureContext({
-    key: fs.readFileSync(`${__dirname}/../ssl/${domain}.key`),
-    cert: fs.readFileSync(`${__dirname}/../ssl/${domain}.crt`),
-  }).context;
+  try {
+    return tls.createSecureContext({
+      key: fs.readFileSync(`${__dirname}/../ssl/${domain}.key`),
+      cert: fs.readFileSync(`${__dirname}/../ssl/${domain}.crt`),
+    }).context;
+  } catch (ex) {
+    console.error(ex);
+    return tls.createSecureContext();
+  }
 }
 
 const secureContext = {

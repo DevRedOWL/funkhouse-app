@@ -73,7 +73,7 @@
                 <label for="socialDropdown">Тип билета:</label>
                 <select class="form-control" id="ticketTypeDropdown">
                   <option>Обычный</option>
-                  <option>Парный</option>
+                  <option>Friendly</option>
                   <option>Проходка</option>
                 </select>
               </div>
@@ -235,7 +235,7 @@
         $("#sellSubmit").click(() => {
           const ticketType = $("#ticketTypeDropdown").val();
           const price =
-            ticketType === "Парный" ? 500 : ticketType === "Проходка" ? 0 : 300;
+            ticketType === "Friendly" ? 300 : ticketType === "Проходка" ? 0 : 350;
           const social = $("#socialDropdown").val();
           const name = input.value;
           fetch("/tickets/", {

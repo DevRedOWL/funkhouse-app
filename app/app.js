@@ -2,19 +2,25 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const path = require("path");
-const { cookieSecret } = require("./config.js").app;
+const { app: appCfg, ssl: sslCfg } = require("./config.js");
 const { performance } = require("perf_hooks");
 
 const TicketsController = require("./tickets.controller.js");
 const AdminController = require("./admin.controller.js");
 
 const app = express();
-app.use(cookieParser(cookieSecret));
+app.use(cookieParser(appCfg.cookieSecret));
 app.use(bodyParser.json());
 app.engine("html", require("ejs").renderFile);
 app.set("view engine", "html");
 app.set("views", path.join(__dirname, "../dist/ticket"));
 app.use(express.static("dist"));
+
+app.get("/.well-known/acme-challenge/:code", (req, res) => {
+  res.send(
+    `${req.params.code}.${sslCfg.ACME[req.params.code] || sslCfg.ACME.default}`
+  );
+});
 
 // Logging middleware
 app.use((req, res, next) => {

@@ -28,9 +28,11 @@ sudo certbot certonly --manual
 
 ```js
 app.get("/.well-known/acme-challenge/:code", (req, res) => {
-  res.send(`${req.params.code}.secret`);
+  res.send(`${req.params.code}.SECRET_FROM_CERTBOT`);
 });
 ```
+
+Or just add key-value pair to config
 
 ## Copy files to ssl folder
 
