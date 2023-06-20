@@ -21,7 +21,5 @@ exports.db = {
 exports.ssl = {
   ACME: {
     default: "ybVtb1PJCqyS-4o1xk_hZGoIn5RegcV2Vrn_Qecvocw",
-    "ah9ID_NfBPvmP9HFK-MEUmCn0sW4rGfc6XHwej4Wt0A":
-      "ybVtb1PJCqyS-4o1xk_hZGoIn5RegcV2Vrn_Qecvocw",
   },
 };

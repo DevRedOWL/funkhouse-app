@@ -40,3 +40,8 @@ Or just add key-value pair to config
 sudo cp /etc/letsencrypt/live/HOST/fullchain.pem ./ssl/HOST.crt
 sudo cp /etc/letsencrypt/live/HOST/privkey.pem ./ssl/HOST.key
 ```
+
+## Make file readable
+```
+sudo chown USERNAME ssl/HOST.key
+```

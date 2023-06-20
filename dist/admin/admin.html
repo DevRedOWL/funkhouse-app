@@ -5,8 +5,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-    <meta name="msapplication-TileColor" content="#FDDF64" />
-    <meta name="theme-color" content="#FDDF64" />
+    <meta name="msapplication-TileColor" content="#de407b" />
+    <meta name="theme-color" content="#de407b" />
     <link
       rel="apple-touch-icon"
       sizes="180x180"
@@ -73,7 +73,7 @@
                 <label for="socialDropdown">Тип билета:</label>
                 <select class="form-control" id="ticketTypeDropdown">
                   <option>Обычный</option>
-                  <option>Friendly</option>
+                  <option>Парный</option>
                   <option>Проходка</option>
                 </select>
               </div>
@@ -235,7 +235,7 @@
         $("#sellSubmit").click(() => {
           const ticketType = $("#ticketTypeDropdown").val();
           const price =
-            ticketType === "Friendly" ? 300 : ticketType === "Проходка" ? 0 : 350;
+            ticketType === "Парный" ? 600 : ticketType === "Проходка" ? 0 : 350;
           const social = $("#socialDropdown").val();
           const name = input.value;
           fetch("/tickets/", {
