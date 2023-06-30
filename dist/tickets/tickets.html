@@ -53,7 +53,7 @@
         <tr>
           <th style="width: 350px">
             <span style="font-weight: 200;">Билетов:</span> <%= list.filter(ticket=>ticket.checked === true).length %> / <%= data.count %>, 
-            <span style="font-weight: 200;">Человек:</span> <%= data.count + list.filter(ticket=>ticket.price === 500).length %>
+            <span style="font-weight: 200;">Человек:</span> <%= data.count + list.filter(ticket=>ticket.price === 600).length %>
           </th>
           <th><span style="font-weight: 200;">Сумма:</span>  <%= data.revenue %>₽</th>
         </tr>
